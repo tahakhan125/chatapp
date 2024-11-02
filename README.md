@@ -1,4 +1,3 @@
-```markdown
 <p align="center"> 
   <a href="https://laravel.com" target="_blank"> 
     <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"> 
@@ -18,6 +17,8 @@
     <img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"> 
   </a> 
 </p>
+
+```markdown
 
 # About WhatsApp Clone
 This application is a WhatsApp clone built with Laravel, featuring core messaging functionalities like sending and receiving messages. With a focus on simplicity and real-time communication, this app emulates key aspects of WhatsApp’s chat experience.
