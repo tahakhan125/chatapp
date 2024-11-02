@@ -1,193 +1,165 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p> <p align="center"> <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a> <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a> <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a> <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a> </p>
-About WhatsApp Clone
-This application is a WhatsApp clone built with Laravel. It includes core messaging features such as sending and receiving messages, along with other functionalities typically found in a chat application. The aim is to provide a similar experience to the WhatsApp messaging system with a focus on simplicity and real-time communication.
+```markdown
+<p align="center"> 
+  <a href="https://laravel.com" target="_blank"> 
+    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"> 
+  </a> 
+</p> 
+<p align="center"> 
+  <a href="https://github.com/laravel/framework/actions"> 
+    <img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"> 
+  </a> 
+  <a href="https://packagist.org/packages/laravel/framework"> 
+    <img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"> 
+  </a> 
+  <a href="https://packagist.org/packages/laravel/framework"> 
+    <img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"> 
+  </a> 
+  <a href="https://packagist.org/packages/laravel/framework"> 
+    <img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"> 
+  </a> 
+</p>
 
-Installation and Setup
-To get started, follow these steps to set up the application on your local environment.
+# About WhatsApp Clone
+This application is a WhatsApp clone built with Laravel, featuring core messaging functionalities like sending and receiving messages. With a focus on simplicity and real-time communication, this app emulates key aspects of WhatsApp’s chat experience.
 
-Clone the repository:
+# Installation and Setup
+To set up this application in your local environment, follow the steps below:
 
-bash
-Copy code
-git clone /chatapp
-cd your-repository
-Install dependencies:
+## Clone the Repository
+```bash
+git clone <your-repository-url>
+cd chatapp
+```
 
-bash
-Copy code
+## Install Dependencies
+```bash
 composer install
-Set up the environment file:
+```
 
-bash
-Copy code
+## Set Up the Environment File
+```bash
 cp .env.example .env
 php artisan key:generate
-Run migrations to set up the database:
+```
 
-bash
-Copy code
+## Run Migrations to Set Up the Database
+```bash
 php artisan migrate
-Run any scheduled tasks:
+```
 
-bash
-Copy code
+## Run Scheduled Tasks
+```bash
 php artisan schedule:run
-Testing with Postman
-Use Postman to test the messaging API endpoints. Import the Postman collection and set the base URL to point to your local or production server.
+```
 
-chat-app
-﻿
+# API Testing with Postman
+To test the API endpoints, use Postman. Set the base URL to point to your local server or deployment environment and use the following endpoints:
 
-POST
-Register
-{{BASE_URL}}api/register
-﻿
+## Authentication
+### Register
+**POST** `{{BASE_URL}}/api/register`
 
-Request Headers
-Accept
-application/json
-Body
-urlencoded
-name
-random
-email
-random@user.com
-password
-112233
-password_confirmation
-112233
-POST
-Login
-{{BASE_URL}}api/login
-﻿
+**Headers:** 
+- Accept: application/json
 
-Request Headers
-Accept
-application/json
-Body
-form-data
-email
-random@user.com
-password
-112233
-POST
-logout
-{{BASE_URL}}api/logout
-﻿
+**Body (form-data):**
+- name: random
+- email: random@user.com
+- password: 112233
+- password_confirmation: 112233
 
-Authorization
-Bearer Token
-Token
-{{token}}
-Request Headers
-Accept
-application/json
-POST
-Create Room
-{{BASE_URL}}api/create/room
-﻿
+### Login
+**POST** `{{BASE_URL}}/api/login`
 
-Request Headers
-Content-Type
-application/json
-Accept
-application/json
-Body
-form-data
-name
-New Room
-POST
-Remove Room
-{{BASE_URL}}api/remove/room
-﻿
+**Headers:** 
+- Accept: application/json
 
-Request Headers
-Accept
-application/json
-Body
-urlencoded
-chat_room_id
-1
-POST
-Join Room
-{{BASE_URL}}api/join/room
-﻿
+**Body (form-data):**
+- email: random@user.com
+- password: 112233
 
-Request Headers
-Accept
-application/json
-Body
-urlencoded
-chat_room_id
-1
-user_id
-1
-POST
-Leave Room
-{{BASE_URL}}api/leave/room
-﻿
+### Logout
+**POST** `{{BASE_URL}}/api/logout`
 
-Request Headers
-Accept
-application/json
-Body
-urlencoded
-chat_room_id
-1
-user_id
-1
-POST
-Send Message
-{{BASE_URL}}api/send/message
-﻿
+**Authorization:** Bearer Token `{{token}}`  
+**Headers:** 
+- Accept: application/json
 
-Authorization
-Bearer Token
-Token
-{{token}}
-Request Headers
-Accept
-application/json
-Body
-urlencoded
-chat_room_id
-1
-user_id
-1
-message
-Sending Message
-POST
-Remove Message
-{{BASE_URL}}api/remove/message
-﻿
+## Chat Room Management
+### Create Room
+**POST** `{{BASE_URL}}/api/create/room`
 
-Request Headers
-Accept
-application/json
-Body
-urlencoded
-id
-1
-GET
-List Room
-{{BASE_URL}}api/list/room
-﻿
+**Headers:** 
+- Content-Type: application/json
+- Accept: application/json
 
-Request Headers
-Accept
-application/json
-GET
-List Messages
-{{BASE_URL}}api/list/message
-﻿
+**Body (form-data):**
+- name: New Room
 
-Request Headers
-Accept
-application/json
+### Remove Room
+**POST** `{{BASE_URL}}/api/remove/room`
 
-Send Message: Use the POST /messages endpoint to send a new message.
-Receive Messages: Use the GET /messages endpoint to retrieve all messages or filter by specific criteria.
-License
-This project is open-sourced software licensed under the MIT license.
+**Headers:** 
+- Accept: application/json
 
-Feel free to customize further by adding more detailed descriptions of your app’s unique features. Let me know if you need help with specific sections or additional details!
+**Body (form-data):**
+- chat_room_id: 1
+
+### Join Room
+**POST** `{{BASE_URL}}/api/join/room`
+
+**Headers:** 
+- Accept: application/json
+
+**Body (form-data):**
+- chat_room_id: 1
+- user_id: 1
+
+### Leave Room
+**POST** `{{BASE_URL}}/api/leave/room`
+
+**Headers:** 
+- Accept: application/json
+
+**Body (form-data):**
+- chat_room_id: 1
+- user_id: 1
+
+## Messaging
+### Send Message
+**POST** `{{BASE_URL}}/api/send/message`
+
+**Authorization:** Bearer Token `{{token}}`  
+**Headers:** 
+- Accept: application/json
+
+**Body (form-data):**
+- chat_room_id: 1
+- user_id: 1
+- message: Sending Message
+
+### Remove Message
+**POST** `{{BASE_URL}}/api/remove/message`
+
+**Headers:** 
+- Accept: application/json
+
+**Body (form-data):**
+- id: 1
+
+## Listing
+### List Rooms
+**GET** `{{BASE_URL}}/api/list/room`
+
+**Headers:** 
+- Accept: application/json
+
+### List Messages
+**GET** `{{BASE_URL}}/api/list/message`
+
+**Headers:** 
+- Accept: application/json
+
+# License
+This project is open-source and licensed under the MIT license.
+```
