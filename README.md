@@ -1,66 +1,166 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<p align="center"> 
+  <a href="https://laravel.com" target="_blank"> 
+    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"> 
+  </a> 
+</p> 
+<p align="center"> 
+  <a href="https://github.com/laravel/framework/actions"> 
+    <img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"> 
+  </a> 
+  <a href="https://packagist.org/packages/laravel/framework"> 
+    <img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"> 
+  </a> 
+  <a href="https://packagist.org/packages/laravel/framework"> 
+    <img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"> 
+  </a> 
+  <a href="https://packagist.org/packages/laravel/framework"> 
+    <img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"> 
+  </a> 
 </p>
 
-## About Laravel
+```markdown
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# About WhatsApp Clone
+This application is a WhatsApp clone built with Laravel, featuring core messaging functionalities like sending and receiving messages. With a focus on simplicity and real-time communication, this app emulates key aspects of WhatsApp’s chat experience.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Installation and Setup
+To set up this application in your local environment, follow the steps below:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Clone the Repository
+```bash
+git clone <your-repository-url>
+cd chatapp
+```
 
-## Learning Laravel
+## Install Dependencies
+```bash
+composer install
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Set Up the Environment File
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Run Migrations to Set Up the Database
+```bash
+php artisan migrate
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Run Scheduled Tasks
+```bash
+php artisan schedule:run
+```
 
-## Laravel Sponsors
+# API Testing with Postman
+To test the API endpoints, use Postman. Set the base URL to point to your local server or deployment environment and use the following endpoints:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Authentication
+### Register
+**POST** `{{BASE_URL}}/api/register`
 
-### Premium Partners
+**Headers:** 
+- Accept: application/json
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+**Body (form-data):**
+- name: random
+- email: random@user.com
+- password: 112233
+- password_confirmation: 112233
 
-## Contributing
+### Login
+**POST** `{{BASE_URL}}/api/login`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Headers:** 
+- Accept: application/json
 
-## Code of Conduct
+**Body (form-data):**
+- email: random@user.com
+- password: 112233
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Logout
+**POST** `{{BASE_URL}}/api/logout`
 
-## Security Vulnerabilities
+**Authorization:** Bearer Token `{{token}}`  
+**Headers:** 
+- Accept: application/json
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Chat Room Management
+### Create Room
+**POST** `{{BASE_URL}}/api/create/room`
 
-## License
+**Headers:** 
+- Content-Type: application/json
+- Accept: application/json
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Body (form-data):**
+- name: New Room
+
+### Remove Room
+**POST** `{{BASE_URL}}/api/remove/room`
+
+**Headers:** 
+- Accept: application/json
+
+**Body (form-data):**
+- chat_room_id: 1
+
+### Join Room
+**POST** `{{BASE_URL}}/api/join/room`
+
+**Headers:** 
+- Accept: application/json
+
+**Body (form-data):**
+- chat_room_id: 1
+- user_id: 1
+
+### Leave Room
+**POST** `{{BASE_URL}}/api/leave/room`
+
+**Headers:** 
+- Accept: application/json
+
+**Body (form-data):**
+- chat_room_id: 1
+- user_id: 1
+
+## Messaging
+### Send Message
+**POST** `{{BASE_URL}}/api/send/message`
+
+**Authorization:** Bearer Token `{{token}}`  
+**Headers:** 
+- Accept: application/json
+
+**Body (form-data):**
+- chat_room_id: 1
+- user_id: 1
+- message: Sending Message
+
+### Remove Message
+**POST** `{{BASE_URL}}/api/remove/message`
+
+**Headers:** 
+- Accept: application/json
+
+**Body (form-data):**
+- id: 1
+
+## Listing
+### List Rooms
+**GET** `{{BASE_URL}}/api/list/room`
+
+**Headers:** 
+- Accept: application/json
+
+### List Messages
+**GET** `{{BASE_URL}}/api/list/message`
+
+**Headers:** 
+- Accept: application/json
+
+# License
+This project is open-source and licensed under the MIT license.
+```
