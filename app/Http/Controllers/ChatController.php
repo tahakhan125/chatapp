@@ -12,7 +12,7 @@ class ChatController extends Controller
 {
     public function listRoom(){
 
-        $room = ChatRoom::all();
+        $room = ChatRoom::paginate(20);
 
         return response()->json(['message' => 'All Rooms!','data' => $room]);
     }
@@ -94,7 +94,7 @@ class ChatController extends Controller
     }
 
     public function listMessage(){
-        $message = Message::all();
+        $message = Message::paginate(20);
         return response()->json(['message' => 'All Messages!' ,'data' => $message]);
     }
 
